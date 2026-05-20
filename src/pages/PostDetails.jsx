@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../App";
+import ShowComments from "../components/Comments";
 
 function PostDetails() {
     const { id } = useParams();
@@ -24,6 +25,7 @@ function PostDetails() {
     }, [id]);
 
     return <>
+
         <div
             style={{
                 minHeight: "100vh",
@@ -196,7 +198,14 @@ function PostDetails() {
                 </div>
             }
         </div>
+
+
+   
+        <ShowComments/>
     </>
 }
+
+
+
 
 export default PostDetails;

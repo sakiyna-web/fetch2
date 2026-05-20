@@ -1,95 +1,180 @@
+import { useState } from "react";
+
 function CreateNewPost() {
-    const newPost = {
-      title: "",
-      body: "",
-      userId: 1,
-    };
-  
-    return (
+  const [newPost, setNewPost] = useState({
+    title: "",
+    body: "",
+    userId: 1,
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  function handleChange(e) {
+    setNewPost({
+      ...newPost,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function createPost(e) {
+    e.preventDefault();
+
+    if (!newPost.title || !newPost.body) {
+      setMessage("⚠ Заполните все поля");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setMessage("");
+
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newPost),
+        }
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      setMessage("✅ Пост успешно создан!");
+
+      setNewPost({
+        title: "",
+        body: "",
+        userId: 1,
+      });
+    } catch (error) {
+      setMessage("❌ Ошибка при создании поста");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background:
+          "linear-gradient(135deg,#0F172A,#1E3A8A,#7C3AED)",
+        fontFamily: "Arial",
+        padding: "20px",
+      }}
+    >
       <div
         style={{
-          minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background:
-            "linear-gradient(135deg, rgb(59, 130, 246), rgb(147, 51, 234))",
-          fontFamily: "Arial",
+          width: "420px",
+          background: "rgba(255,255,255,0.1)",
+          backdropFilter: "blur(20px)",
+          padding: "35px",
+          borderRadius: "25px",
+          boxShadow: "0 10px 35px rgba(0,0,0,0.3)",
+          border: "1px solid rgba(255,255,255,0.2)",
         }}
       >
-        <div
+        <h1
           style={{
-            width: "400px",
-            backgroundColor: "white",
-            padding: "30px",
-            borderRadius: "20px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+            textAlign: "center",
+            color: "white",
+            marginBottom: "25px",
+            fontSize: "32px",
           }}
         >
-          <h2
+          Create Post ✨
+        </h1>
+
+        <form
+          onSubmit={createPost}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
+          <input
+            name="title"
+            value={newPost.title}
+            onChange={handleChange}
+            placeholder="Post title..."
             style={{
+              padding: "16px",
+              borderRadius: "14px",
+              border: "none",
+              outline: "none",
+              background: "rgba(255,255,255,0.15)",
+              color: "white",
+              fontSize: "16px",
+            }}
+          />
+
+          <textarea
+            name="body"
+            value={newPost.body}
+            onChange={handleChange}
+            rows="6"
+            placeholder="Write your content..."
+            style={{
+              padding: "16px",
+              borderRadius: "14px",
+              border: "none",
+              outline: "none",
+              resize: "none",
+              background: "rgba(255,255,255,0.15)",
+              color: "white",
+              fontSize: "16px",
+            }}
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: "15px",
+              border: "none",
+              borderRadius: "14px",
+              background:
+                "linear-gradient(135deg,#2563EB,#9333EA)",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "17px",
+              cursor: "pointer",
+              transition: "0.3s",
+            }}
+          >
+            {loading
+              ? "Creating..."
+              : "🚀 Create Post"}
+          </button>
+        </form>
+
+        {message && (
+          <div
+            style={{
+              marginTop: "20px",
               textAlign: "center",
-              marginBottom: "25px",
-              color: "#333",
+              color: "white",
+              fontWeight: "bold",
+              background: "rgba(255,255,255,0.15)",
+              padding: "12px",
+              borderRadius: "12px",
             }}
           >
-            Create New Post
-          </h2>
-  
-          <form
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "18px",
-            }}
-          >
-            <input
-              type="text"
-              placeholder="Enter post title"
-              value={newPost.title}
-              style={{
-                padding: "14px",
-                borderRadius: "10px",
-                border: "1px solid #ccc",
-                fontSize: "16px",
-                outline: "none",
-              }}
-            />
-  
-            <textarea
-              placeholder="Write your post..."
-              value={newPost.body}
-              rows="6"
-              style={{
-                padding: "14px",
-                borderRadius: "10px",
-                border: "1px solid #ccc",
-                fontSize: "16px",
-                resize: "none",
-                outline: "none",
-              }}
-            ></textarea>
-  
-            <button
-              type="submit"
-              style={{
-                padding: "14px",
-                border: "none",
-                borderRadius: "10px",
-                background:
-                  "linear-gradient(135deg, rgb(59, 130, 246), rgb(147, 51, 234))",
-                color: "white",
-                fontSize: "17px",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Create Post
-            </button>
-          </form>
-        </div>
+            {message}
+          </div>
+        )}
       </div>
-    );
-  }
-  
-  export default CreateNewPost;
+    </div>
+  );
+}
+
+export default CreateNewPost;

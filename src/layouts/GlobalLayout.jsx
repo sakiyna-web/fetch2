@@ -84,6 +84,14 @@ function GlobalLayout({ children }) {
                 >
                     ➕ Create Post
                 </Link>
+
+                <Link
+                    to="/todos"
+                    style={styles.link}
+                >
+                    ☑️ Todo
+                </Link>
+
             </nav>
 
             <main style={styles.main}>

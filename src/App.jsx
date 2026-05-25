@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import PostDetails from "./pages/PostDetails";
 import CreateNewPost from "./pages/CreateNewPost";
 import GlobalLayout from "./layouts/GlobalLayout";
+import Todo from "./pages/Todo";
 
 export const BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -14,6 +15,12 @@ function App() {
       <Route path="/" element={
         <GlobalLayout>
           <Home />
+          </GlobalLayout>
+        } />
+
+      <Route path="/todos" element={
+        <GlobalLayout>
+          <Todo />
           </GlobalLayout>
         } />
 

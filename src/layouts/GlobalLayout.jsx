@@ -92,6 +92,13 @@ function GlobalLayout({ children }) {
                     ☑️ Todo
                 </Link>
 
+                <Link
+                    to="/users"
+                    style={styles.link}
+                >
+                    👨‍👩‍👧‍👧 users
+                </Link>
+
             </nav>
 
             <main style={styles.main}>

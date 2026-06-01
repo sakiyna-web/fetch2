@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../App";
+import { Link } from "react-router-dom";
 
 function Users() {
   const [posts, setPosts] = useState([]);
@@ -23,8 +24,7 @@ function Users() {
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(135deg, #0f172a, #1e293b, #334155)",
+        background: "linear-gradient(135deg, #0f172a, #1e293b, #334155)",
         padding: "40px 20px",
         fontFamily: "Arial",
       }}
@@ -33,28 +33,40 @@ function Users() {
         style={{
           textAlign: "center",
           color: "white",
-          marginBottom: "40px",
+          marginBottom: "20px",
           fontSize: "clamp(30px,5vw,50px)",
         }}
       >
-        Posts
+        Users
       </h1>
 
-      {isLoading ? (
-        <h2
+      {/* CREATE USER BUTTON */}
+      <div style={{ textAlign: "center", marginBottom: "30px" }}>
+        <Link
+          to="/create/user"
           style={{
+            display: "inline-block",
+            padding: "12px 20px",
+            borderRadius: "12px",
+            background: "linear-gradient(135deg,#38bdf8,#6366f1)",
             color: "white",
-            textAlign: "center",
+            textDecoration: "none",
+            fontWeight: "bold",
           }}
         >
+          ➕ Create User
+        </Link>
+      </div>
+
+      {isLoading ? (
+        <h2 style={{ color: "white", textAlign: "center" }}>
           Loading...
         </h2>
       ) : (
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
             gap: "25px",
             maxWidth: "1400px",
             margin: "0 auto",
@@ -71,7 +83,6 @@ function Users() {
                 padding: "25px",
                 color: "white",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
-                transition: "0.3s",
               }}
             >
               <div
@@ -79,8 +90,7 @@ function Users() {
                   width: "60px",
                   height: "60px",
                   borderRadius: "50%",
-                  background:
-                    "linear-gradient(135deg,#38bdf8,#6366f1)",
+                  background: "linear-gradient(135deg,#38bdf8,#6366f1)",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -96,7 +106,6 @@ function Users() {
                 style={{
                   fontSize: "24px",
                   marginBottom: "15px",
-                  lineHeight: "1.4",
                 }}
               >
                 {post.title}
@@ -118,13 +127,11 @@ function Users() {
                   padding: "12px 18px",
                   border: "none",
                   borderRadius: "12px",
-                  background:
-                    "linear-gradient(135deg,#38bdf8,#6366f1)",
+                  background: "linear-gradient(135deg,#38bdf8,#6366f1)",
                   color: "white",
                   fontWeight: "bold",
                   cursor: "pointer",
                   width: "100%",
-                  fontSize: "15px",
                 }}
               >
                 Read More

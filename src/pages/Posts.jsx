@@ -24,8 +24,7 @@ function Posts() {
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(135deg, #0f172a, #1e293b, #334155)",
+        background: "linear-gradient(135deg, #0f172a, #1e293b, #334155)",
         padding: "40px 20px",
         fontFamily: "Arial, sans-serif",
       }}
@@ -35,12 +34,30 @@ function Posts() {
           textAlign: "center",
           color: "white",
           fontSize: "clamp(32px, 5vw, 55px)",
-          marginBottom: "40px",
+          marginBottom: "20px",
           fontWeight: "bold",
         }}
       >
         Posts
       </h1>
+
+      {/* CREATE POST BUTTON */}
+      <div style={{ textAlign: "center", marginBottom: "30px" }}>
+        <Link
+          to="/create/post"
+          style={{
+            display: "inline-block",
+            padding: "12px 20px",
+            borderRadius: "12px",
+            background: "linear-gradient(135deg,#38bdf8,#6366f1)",
+            color: "white",
+            textDecoration: "none",
+            fontWeight: "bold",
+          }}
+        >
+          ➕ Create Post
+        </Link>
+      </div>
 
       {isLoading && (
         <h2
@@ -57,8 +74,7 @@ function Posts() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "25px",
           maxWidth: "1400px",
           margin: "0 auto",
@@ -81,7 +97,6 @@ function Posts() {
               overflow: "hidden",
             }}
           >
-            {/* TOP */}
             <div
               style={{
                 display: "flex",
@@ -95,8 +110,7 @@ function Posts() {
                   width: "65px",
                   height: "65px",
                   borderRadius: "50%",
-                  background:
-                    "linear-gradient(135deg,#38bdf8,#6366f1)",
+                  background: "linear-gradient(135deg,#38bdf8,#6366f1)",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -132,7 +146,6 @@ function Posts() {
               </div>
             </div>
 
-            {/* BODY */}
             <div
               style={{
                 background: "rgba(255,255,255,0.08)",
@@ -153,15 +166,13 @@ function Posts() {
               </p>
             </div>
 
-            {/* BUTTON */}
             <button
               style={{
                 width: "100%",
                 padding: "14px",
                 border: "none",
                 borderRadius: "14px",
-                background:
-                  "linear-gradient(135deg,#38bdf8,#6366f1)",
+                background: "linear-gradient(135deg,#38bdf8,#6366f1)",
                 color: "white",
                 fontWeight: "bold",
                 fontSize: "15px",

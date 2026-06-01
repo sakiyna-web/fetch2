@@ -7,6 +7,8 @@ import CreateNewPost from "./pages/CreateNewPost";
 import GlobalLayout from "./layouts/GlobalLayout";
 import Todo from "./pages/Todo";
 import Users from "./pages/Users";
+import Albums from "./pages/Albums";
+import CreateUser from "./pages/CreateUser";
 
 export const BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -49,8 +51,21 @@ function App() {
           </GlobalLayout>
         } />
 
+<Route path="/albums" element={
+        <GlobalLayout>
+          <Albums />
+          </GlobalLayout>
+        } />
+
+<Route path="/create/user" element={
+        <GlobalLayout>
+          <CreateUser />
+          </GlobalLayout>
+        } />
+  
 
     </Routes>
+    
   )
 }
 

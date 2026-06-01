@@ -78,12 +78,6 @@ function GlobalLayout({ children }) {
                     📝 Posts
                 </Link>
 
-                <Link
-                    to="/create/post"
-                    style={styles.link}
-                >
-                    ➕ Create Post
-                </Link>
 
                 <Link
                     to="/todos"
@@ -98,7 +92,15 @@ function GlobalLayout({ children }) {
                 >
                     👨‍👩‍👧‍👧 users
                 </Link>
+                <Link
+                    to="/albums"
+                    style={styles.link}
+                >
+                    📸 albums
+                </Link>
 
+              
+           
             </nav>
 
             <main style={styles.main}>
